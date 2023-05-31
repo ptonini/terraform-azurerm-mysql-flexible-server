@@ -21,6 +21,11 @@ resource "azurerm_mysql_flexible_server" "this" {
   }
   delegated_subnet_id = var.subnet_id
   private_dns_zone_id = try(var.private_dns_zone.id, null)
+  lifecycle {
+    ignore_changes = [
+      tags
+    ]
+  }
 }
 
 data "azurerm_private_dns_a_record" "this" {
