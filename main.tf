@@ -23,7 +23,10 @@ resource "azurerm_mysql_flexible_server" "this" {
   private_dns_zone_id = try(var.private_dns_zone.id, null)
   lifecycle {
     ignore_changes = [
-      tags
+      tags["business_unit"],
+      tags["environment"],
+      tags["product"],
+      tags["subscription_type"]
     ]
   }
 }
